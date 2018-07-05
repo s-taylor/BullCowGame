@@ -14,25 +14,16 @@ using namespace std; // allows using std namespace without std:: prefix
 // defines a prototype of the functions
 // so they can be used from down below
 void PrintIntro();
-string GetGuessAndPrintBack();
+void PlayGame();
+string GetGuess();
 
 // the entry point for our application
 int main()
 {
     PrintIntro();
-    
-    // loop for the number of turns, asking for guesses
-    int NUMBER_OF_TURNS = 5;
-    for(int i = 1; i <= NUMBER_OF_TURNS; i++)
-    {
-        GetGuessAndPrintBack();
-        cout << endl;
-    }
-
-    cout << endl;
+    PlayGame();
     return 0;
 }
-
 
 // introduces the game
 void PrintIntro()
@@ -47,14 +38,24 @@ void PrintIntro()
     return;
 }
 
-// get a guess from the player
-string GetGuessAndPrintBack()
+// loop for the number of turns, asking for guesses
+void PlayGame()
 {
-    string Guess = "";
-    
-    cout << "Enter your guess: \n";
-    getline(cin, Guess);
-    cout << "Your guess was " << Guess << endl;
+    int NUMBER_OF_TURNS = 5;
+    for(int i = 1; i <= NUMBER_OF_TURNS; i++)
+    {
+        string Guess = GetGuess();
+        cout << "Your guess was: " << Guess << endl;
+        cout << endl;
+    }
+}
 
+// get a guess from the player
+string GetGuess()
+{
+    cout << "Enter your guess: \n";
+    
+    string Guess = "";
+    getline(cin, Guess);
     return Guess;
 }

@@ -16,12 +16,14 @@ using namespace std; // allows using std namespace without std:: prefix
 void PrintIntro();
 void PlayGame();
 string GetGuess();
+bool AskToPlayAgain();
 
 // the entry point for our application
 int main()
 {
     PrintIntro();
     PlayGame();
+    AskToPlayAgain(); // this doesn't do anything yet
     return 0;
 }
 
@@ -58,4 +60,15 @@ string GetGuess()
     string Guess = "";
     getline(cin, Guess);
     return Guess;
+}
+
+// ask the player if they want to play again
+bool AskToPlayAgain()
+{
+    cout << "Do you want to play again?";
+    string Response = "";
+    getline(cin, Response);
+    cout << endl;
+
+    return tolower(Response[0]) == 'y';
 }

@@ -21,9 +21,13 @@ bool AskToPlayAgain();
 // the entry point for our application
 int main()
 {
-    PrintIntro();
-    PlayGame();
-    AskToPlayAgain(); // this doesn't do anything yet
+    bool bPlayAgain = false;
+    do {
+        PrintIntro();
+        PlayGame();
+        bPlayAgain = AskToPlayAgain();
+    } while(bPlayAgain);
+
     return 0;
 }
 
@@ -65,7 +69,7 @@ string GetGuess()
 // ask the player if they want to play again
 bool AskToPlayAgain()
 {
-    cout << "Do you want to play again?";
+    cout << "Do you want to play again (y/n)? ";
     string Response = "";
     getline(cin, Response);
     cout << endl;

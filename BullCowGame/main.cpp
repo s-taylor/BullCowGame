@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string> // required for string type
+#include "FBullCowGame.hpp"
 
 // defines a prototype of the functions
 // so they can be used from down below
@@ -15,6 +16,9 @@ void PrintIntro();
 void PlayGame();
 std::string GetGuess();
 bool AskToPlayAgain();
+
+// instansiate the game
+FBullCowGame BCGame;
 
 // the entry point for our application
 int main()
@@ -32,20 +36,23 @@ int main()
 // introduces the game
 void PrintIntro()
 {
+    int MaxTries = BCGame.GetMaxTries();
+    std::cout << MaxTries << std::endl;
+    
     constexpr int WORD_LENGTH = 5; // evaluated at compile time
     
     std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
     std::cout << "Can you guess the " << WORD_LENGTH;
     std::cout << " letter isogram I'm thinking of?\n";
     std::cout << std::endl;
-    
+
     return;
 }
 
 // loop for the number of turns, asking for guesses
 void PlayGame()
 {
-    int NUMBER_OF_TURNS = 5;
+    constexpr int NUMBER_OF_TURNS = 5;
     for(int i = 1; i <= NUMBER_OF_TURNS; i++)
     {
         std::string Guess = GetGuess();
@@ -57,7 +64,8 @@ void PlayGame()
 // get a guess from the player
 std::string GetGuess()
 {
-    std::cout << "Enter your guess: \n";
+    int CurrentTry = BCGame.GetCurrentTry();
+    std::cout << "Try " << CurrentTry << ". Enter your guess: " << std::endl;
     
     std::string Guess = "";
     getline(std::cin, Guess);
